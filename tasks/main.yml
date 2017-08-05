@@ -4,6 +4,11 @@
 
 - include: ansible_packages.yml
 
+- name: set hostname
+  hostname:
+    name: "{{ hostname }}{{ '%02d'|format(ansible_play_batch.index(inventory_hostname)+1) }}"
+  when: set_hostname ==  true
+
 - name: disable iptables on boot and stop iptables service
   service:
     name: "{{ iptables_service }}"
