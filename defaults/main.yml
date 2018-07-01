@@ -1,3 +1,6 @@
 ---
-set_hostname: false
 hostname: server
+set_hostname: false
+install_basic_package: false
+update_all: false
+install_ansible_packages: false

@@ -3,11 +3,12 @@
   include_vars: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
 
 - include: ansible_packages.yml
+  when: install_ansible_packages == true
 
 - name: set hostname
   hostname:
     name: "{{ hostname }}{{ '%02d'|format(ansible_play_batch.index(inventory_hostname)+1) }}"
-  when: set_hostname ==  true
+  when: set_hostname == true
 
 - name: disable iptables on boot and stop iptables service
   service:
@@ -48,8 +49,10 @@
     - git
     - libcurl
     - net-tools
+  when: install_basic_package == true
 
 - name: update all packages
   yum:
     name: "*"
     state: latest
+  when: update_all == true

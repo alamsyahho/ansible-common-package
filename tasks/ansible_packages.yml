@@ -6,3 +6,4 @@
   with_items:
     - libselinux-python
     - MySQL-python
+    - python-docker-py
