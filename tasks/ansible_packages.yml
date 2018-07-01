@@ -7,3 +7,12 @@
     - libselinux-python
     - MySQL-python
     - python-docker-py
+    - python-pip
+    - policycoreutils-python
+
+- name: install python pip modules
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - zabbix-api
